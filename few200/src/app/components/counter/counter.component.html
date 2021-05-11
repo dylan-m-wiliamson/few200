@@ -3,5 +3,11 @@
 <span>{{current$ | async}}</span>
 <button (click)="increment()"
         class="btn btn-sm btn-primary">+</button>
-<button (click)="resetState()"
-        class="btn btn-sm btn-primary">reset</button>
+<div>
+  <button (click)="resetState()"
+          [disabled]="resetDisabled$ | async"
+          class="btn btn-sm btn-primary">reset</button>
+</div>
+<div>
+  <app-counter-count-by></app-counter-count-by>
+</div>

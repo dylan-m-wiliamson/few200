@@ -3,17 +3,20 @@ import { Action, createReducer, on } from "@ngrx/store";
 import * as actions from '../actions/counter.actions';
 
 export interface CounterState {
-  current: number
+  current: number,
+  by: number
 }
 
 const initialState: CounterState = {
-  current: 0
+  current: 0,
+  by: 1
 }
 
 const myReducer = createReducer(
   initialState,
-  on(actions.countIncremented, (state) => ({ ...state, current: state.current + 1 })),
-  on(actions.countDecremented, (state) => ({ ...state, current: state.current - 1 })),
+  on(actions.counterCountBySet, (state, action) => ({ ...state, by: action.by })),
+  on(actions.countIncremented, (state) => ({ ...state, current: state.current + state.by })),
+  on(actions.countDecremented, (state) => ({ ...state, current: state.current - state.by })),
   on(actions.countReset, () => initialState)
 )
 

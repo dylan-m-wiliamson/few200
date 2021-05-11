@@ -13,6 +13,9 @@ import { NavComponent } from './components/nav/nav.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CounterCountByComponent } from './components/counter-count-by/counter-count-by.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CounterEffects } from './effects/counter.effects';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     CounterComponent,
     HomeComponent,
     NotFoundComponent,
-    NavComponent
+    NavComponent,
+    CounterCountByComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([CounterEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
