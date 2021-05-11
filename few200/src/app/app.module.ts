@@ -28,8 +28,8 @@ import { ProductivityModule } from './features/productivity/productivity.module'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ProductivityModule,
+    AppRoutingModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([CounterEffects, AppEffects])
