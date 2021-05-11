@@ -16,6 +16,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CounterCountByComponent } from './components/counter-count-by/counter-count-by.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './effects/counter.effects';
+import { AppEffects } from './effects/app.effects';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { CounterEffects } from './effects/counter.effects';
     AppRoutingModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([CounterEffects])
+    EffectsModule.forRoot([CounterEffects, AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

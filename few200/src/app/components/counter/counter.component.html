@@ -1,13 +1,10 @@
 <button (click)="decrement()"
         class="btn btn-sm btn-primary">-</button>
-<span>{{current$ | async}}</span>
+<span>{{current$ | async }}</span>
 <button (click)="increment()"
         class="btn btn-sm btn-primary">+</button>
 <div>
-  <button (click)="resetState()"
+  <button (click)="reset()"
           [disabled]="resetDisabled$ | async"
-          class="btn btn-sm btn-primary">reset</button>
-</div>
-<div>
-  <app-counter-count-by></app-counter-count-by>
+          class="btn btn-primary">RESET</button>
 </div>
