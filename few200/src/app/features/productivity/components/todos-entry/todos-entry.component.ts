@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { addTodo } from '../../actions/todos.actions';
+import { selectProjectNames } from '../../reducers';
 
 @Component({
   selector: 'app-todos-entry',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosEntryComponent implements OnInit {
 
-  constructor() { }
+  projects$: Observable<string[]>;
+  form: FormGroup;
+  constructor(
+    private store: Store,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.projects$ = this.store.select(selectProjectNames);
+    this.form = this.formBuilder.group({
+      'name': ['', [Validators.required]],
+      'project': ['']
+    })
   }
 
+  get name(): AbstractControl { return this.form.get('name'); }
+  submit() {
+    if (this.form.valid) {
+      this.store.dispatch(addTodo(this.form.value))
+    } else {
+      // dont do it.
+    }
+  }
 }
